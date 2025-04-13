@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "841574337480",
+    "project_id": "aplicativo-extensionista",
+    "storage_bucket": "aplicativo-extensionista.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841574337480:android:8b9e9b9c52d5564d69cefd",
+        "android_client_info": {
+          "package_name": "com.aulaquinta.aplicativoextensionista"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp5f_ZYnoPgTipuiDHJ_4u9gnO1P6ZBZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
