@@ -1,4 +1,4 @@
-package com.aulaquinta.aplicativoextensionista;
+package com.aulaquinta.aplicativoextensionista.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
