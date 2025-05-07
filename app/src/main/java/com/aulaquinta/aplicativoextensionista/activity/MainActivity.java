@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
 
-    //teste sonarqube
+    //teste sonarqube 22
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
