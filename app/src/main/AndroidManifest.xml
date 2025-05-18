@@ -13,15 +13,23 @@
         android:theme="@style/Theme.AplicativoExtensionista"
         tools:targetApi="31">
         <activity
-            android:name=".activity.CadastroActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AplicativoExtensionista">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.MainActivity">
+        </activity>
+
+        <activity
+            android:name=".activity.CadastroActivity">
+        </activity>
+
     </application>
 
 </manifest>
