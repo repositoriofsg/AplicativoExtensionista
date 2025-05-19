@@ -61,11 +61,12 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Entrar"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#BA8DF3"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/rounded_button" />
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#BA8DF3"
+            android:onClick="validateUserSignIn"
+            android:text="Entrar"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,9 +80,10 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/outlined_button"
+            android:onClick="openSignupScreen"
             android:text="Cadastre-se"
-            android:textColor="#BA8DF3"
-            android:background="@drawable/outlined_button" />
+            android:textColor="#BA8DF3" />
 
     </LinearLayout>
 </LinearLayout>
