@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.PerfilFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/projetoBackground"
+        tools:layout_editor_absoluteY="1dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewPerfil"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="291dp"
+            android:src="@drawable/avatar"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilNome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPerfilNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="282dp"
+            android:text="Nome da Silva"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilFrase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil" />
+
+        <TextView
+            android:id="@+id/textViewPerfilFrase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="208dp"
+            android:text="Juliana pra que serve essa parte"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilProfissao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilNome" />
+
+        <TextView
+            android:id="@+id/textViewPerfilProfissao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="348dp"
+            android:text="Profissão:"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilProfissaoValor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilFrase" />
+
+        <TextView
+            android:id="@+id/textViewPerfilProfissaoValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estudante"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilDisponibilidade"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilProfissao"
+            tools:layout_editor_absoluteX="174dp" />
+
+        <TextView
+            android:id="@+id/textViewPerfilDisponibilidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disponibilidade:"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilDisponibilidadeValor"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilProfissaoValor"
+            tools:layout_editor_absoluteX="156dp" />
+
+        <TextView
+            android:id="@+id/textViewPerfilDisponibilidadeValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Segunda - Sexta, 18h-20h"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilPostagens"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilDisponibilidade"
+            tools:layout_editor_absoluteX="127dp" />
+
+        <TextView
+            android:id="@+id/textViewPerfilPostagens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Postagens"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilDisponibilidadeValor" />
+
+        <include
+            android:id="@+id/recyclerViewPerfil"
+            layout="@layout/auxiliar_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilPostagens" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

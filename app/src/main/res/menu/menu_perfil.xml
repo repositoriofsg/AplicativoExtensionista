@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/icone_toolbar_editar"
+        android:title="Editar perfil"
+        android:icon="@drawable/icone_toolbar_editar"
+        app:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/icone_toolbar_settings"
+        android:title="Configurações"
+        android:icon="@drawable/icone_perfil_settings"
+        app:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+
+<!--    <item-->
+<!--        android:id="@+id/icone_toolbar_sair"-->
+<!--        android:title="Sair"-->
+<!--        android:icon="@drawable/icone_toolbar_sair"-->
+<!--        app:iconTint="@color/white"-->
+<!--        app:showAsAction="ifRoom" />-->
+
+</menu>

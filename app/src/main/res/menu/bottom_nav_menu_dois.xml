@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navbar_home"
+        android:icon="@drawable/icone_bottom_nav_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/navbar_postagem"
+        android:icon="@drawable/icone_bottom_nav_postagem"
+        android:title="Nova postagem" />
+<!--    <item-->
+<!--        android:id="@+id/navbar_notificacoes"-->
+<!--        android:icon="@drawable/baseline_circle_notifications_24"-->
+<!--        android:title="Notificações" />-->
+    <item
+        android:id="@+id/navbar_perfil"
+        android:icon="@drawable/icone_bottom_nav_perfil"
+        android:title="Perfil" />
+</menu>

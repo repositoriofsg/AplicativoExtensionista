@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.NewPostFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/projetoBackground">
+
+        <TextView
+            android:id="@+id/textViewNovaPostagem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="Nova postagem"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/textViewTitulo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="Título"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textInputTitulo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNovaPostagem" />
+
+        <TextView
+            android:id="@+id/textViewDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="Descrição"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textInputDescricao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputTitulo" />
+
+        <TextView
+            android:id="@+id/textViewDisciplinas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="Disciplinas de interesse (selecione um item)"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerDisciplinas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputDescricao" />
+
+        <Button
+            android:id="@+id/buttonPublicar"
+            android:layout_width="347dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="Publicar"
+            app:layout_constraintBottom_toTopOf="@+id/textInputDescricao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerDisciplinas" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_input"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDescricao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitulo" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/rounded_input"
+            android:lines="5"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDisciplinas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescricao" />
+
+        <Spinner
+            android:id="@+id/spinnerDisciplinas"
+            android:layout_width="347dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/rounded_input"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPublicar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDisciplinas" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="30dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

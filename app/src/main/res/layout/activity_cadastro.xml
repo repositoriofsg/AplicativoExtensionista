@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/projetoBackground"
@@ -12,180 +12,180 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <Spinner
+            android:id="@+id/spinner_disciplinas_interesse"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="60dp"
+            android:background="@drawable/rounded_input"
+            android:baselineAligned="false"
+            app:layout_constraintBottom_toTopOf="@+id/btnCadastro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Disciplina_Interesses" />
+
+        <Button
+            android:id="@+id/btnCadastro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="150dp"
+            android:width="350dp"
+            android:baselineAligned="false"
+            android:onClick="validarCamposUsuario"
+            android:text="@string/projeto_cadastre_se"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/spinner_disciplinas_interesse" />
 
-            <Spinner
-                android:id="@+id/spinner_disciplinas_interesse"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_input"
-                android:baselineAligned="false"
-                android:entries="@android:array/postalAddressTypes"
-                app:layout_constraintBottom_toTopOf="@+id/btnCadastro"
-                app:layout_constraintStart_toStartOf="@+id/textView_Disciplina_Interesses"
-                app:layout_constraintTop_toBottomOf="@+id/textView_Disciplina_Interesses" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:width="350dp"
+            android:background="@drawable/rounded_input"
+            android:baselineAligned="false"
+            android:hint="@string/projeto_nome"
+            app:layout_constraintBottom_toTopOf="@+id/textView_Email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Nome" />
 
-            <Button
-                android:id="@+id/btnCadastro"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:width="350dp"
-                android:baselineAligned="false"
-                android:onClick="validarCamposUsuario"
-                android:text="@string/projeto_cadastre_se"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_disciplinas_interesse" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:width="350dp"
+            android:background="@drawable/rounded_input"
+            android:baselineAligned="false"
+            android:hint="@string/projeto_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/textView_Senha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Email" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInput_nome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:width="350dp"
-                android:background="@drawable/rounded_input"
-                android:baselineAligned="false"
-                android:hint="@string/projeto_nome"
-                app:layout_constraintBottom_toTopOf="@+id/textView_Email"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_Nome" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput_senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:width="350dp"
+            android:background="@drawable/rounded_input"
+            android:baselineAligned="false"
+            android:hint="@string/projeto_senha"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Senha" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInput_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:width="350dp"
-                android:background="@drawable/rounded_input"
-                android:baselineAligned="false"
-                android:hint="@string/projeto_email"
-                app:layout_constraintBottom_toTopOf="@+id/textView_Senha"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_Email" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput_telefone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:width="350dp"
+            android:background="@drawable/rounded_input"
+            android:baselineAligned="false"
+            android:hint="@string/projeto_telefone"
+            app:layout_constraintBottom_toTopOf="@+id/textView_Disciplina_Interesses"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Telefone" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInput_senha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:width="350dp"
-                android:background="@drawable/rounded_input"
-                android:baselineAligned="false"
-                android:hint="@string/projeto_senha"
-                app:layout_constraintBottom_toTopOf="@+id/textView_Telefone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_Senha" />
+        <TextView
+            android:id="@+id/textView_Nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:baselineAligned="false"
+            android:text="@string/projeto_nome"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Cadastro" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInput_telefone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:width="350dp"
-                android:background="@drawable/rounded_input"
-                android:baselineAligned="false"
-                android:hint="@string/projeto_telefone"
-                app:layout_constraintBottom_toTopOf="@+id/textView_Disciplina_Interesses"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_Telefone" />
+        <TextView
+            android:id="@+id/textView_Senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:baselineAligned="false"
+            android:text="@string/projeto_senha"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInput_email" />
 
-            <TextView
-                android:id="@+id/textView_Nome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:text="@string/projeto_nome"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/textInput_nome"
-                app:layout_constraintStart_toStartOf="@+id/textInput_nome"
-                app:layout_constraintTop_toBottomOf="@+id/textView_Cadastro" />
+        <TextView
+            android:id="@+id/textView_Telefone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:baselineAligned="false"
+            android:text="@string/projeto_telefone"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInput_senha" />
 
-            <TextView
-                android:id="@+id/textView_Senha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:baselineAligned="false"
-                android:text="@string/projeto_senha"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/textInput_senha"
-                app:layout_constraintStart_toStartOf="@+id/textInput_senha"
-                app:layout_constraintTop_toBottomOf="@+id/textInput_email" />
+        <TextView
+            android:id="@+id/textView_Disciplina_Interesses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:baselineAligned="false"
+            android:text="@string/projeto_disciplinas_de_interesse"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInput_telefone" />
 
-            <TextView
-                android:id="@+id/textView_Telefone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:baselineAligned="false"
-                android:text="@string/projeto_telefone"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/textInput_telefone"
-                app:layout_constraintStart_toStartOf="@+id/textInput_telefone"
-                app:layout_constraintTop_toBottomOf="@+id/textInput_senha" />
+        <TextView
+            android:id="@+id/textView_Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:baselineAligned="false"
+            android:text="@string/projeto_email"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInput_nome" />
 
-            <TextView
-                android:id="@+id/textView_Disciplina_Interesses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:text="@string/projeto_disciplinas_de_interesse"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/spinner_disciplinas_interesse"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInput_telefone" />
-
-            <TextView
-                android:id="@+id/textView_Email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:text="@string/projeto_email"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/textInput_email"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInput_nome" />
-
-            <TextView
-                android:id="@+id/textView_Cadastro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:baselineAligned="false"
-                android:text="@string/projeto_cadastro"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textView_Nome"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView_Cadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:baselineAligned="false"
+            android:text="@string/projeto_cadastro"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView_Nome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.02872777" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -193,12 +193,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="30dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="31dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

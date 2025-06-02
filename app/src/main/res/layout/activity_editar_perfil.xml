@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/projetoBackground"
+    tools:context=".activity.EditarPerfilActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/auxiliar_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="69dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageViewEditarPerfil"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/avatar"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAlterarFoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAlterarFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alterar foto"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEditarPerfilNome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageViewEditarPerfil" />
+
+    <TextView
+        android:id="@+id/textViewEditarPerfilNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Nome"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textInputEditarPerfilNome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAlterarFoto" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditarPerfilNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_input"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEditarPerfilEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditarPerfilNome" />
+
+    <TextView
+        android:id="@+id/textViewEditarPerfilEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="E-mail"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textInputEditarPerfilEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditarPerfilNome" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditarPerfilEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_input"
+        android:enabled="false"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEditarPerfilProfissao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditarPerfilEmail" />
+
+    <TextView
+        android:id="@+id/textViewEditarPerfilProfissao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Profissão"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textInputEditarPerfilProfissao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditarPerfilEmail" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditarPerfilProfissao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_input"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEditarPerfilDisponibilidade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditarPerfilProfissao" />
+
+    <TextView
+        android:id="@+id/textViewEditarPerfilDisponibilidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Disponibilidade"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textInputEditarPerfilDisponibilidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditarPerfilProfissao" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditarPerfilDisponibilidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_input"
+        app:layout_constraintBottom_toTopOf="@+id/buttonEditarPerfilSalvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditarPerfilDisponibilidade" />
+
+    <Button
+        android:id="@+id/buttonEditarPerfilSalvar"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Salvar"
+        app:layout_constraintBottom_toTopOf="@+id/circleImageViewEditarPerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditarPerfilDisponibilidade" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

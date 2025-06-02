@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="32dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="32dp"
+    android:layout_marginBottom="15dp"
+    app:cardCornerRadius="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="25dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/CircleImageViewFeed"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/avatar"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPostagemFeedTitulo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="25dp" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/CircleImageViewFeed"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/avatar"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/textViewPostagemFeedTitulo"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:layout_editor_absoluteX="25dp" />-->
+
+        <TextView
+            android:id="@+id/textViewPostagemFeedNomeUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="16dp"
+            android:text="Nome do usuario"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPostagemFeedData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="35dp"
+            android:text="29/05/2025 18:55"
+            android:textColor="@color/projetoBackground"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPostagemFeedTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Título"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPostagemFeedDescricao"
+            app:layout_constraintTop_toBottomOf="@+id/CircleImageViewFeed"
+            tools:layout_editor_absoluteX="25dp" />
+
+        <TextView
+            android:id="@+id/textViewPostagemFeedDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Descricao"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPostagemFeedDisciplina"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPostagemFeedTitulo"
+            tools:layout_editor_absoluteX="25dp" />
+
+        <TextView
+            android:id="@+id/textViewPostagemFeedDisciplina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="?attr/colorErrorContainer"
+            android:text="Prog. Orientada a Objetos"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPostagemFeed"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPostagemFeedDescricao"
+            tools:layout_editor_absoluteX="25dp" />
+
+        <Button
+            android:id="@+id/buttonPostagemFeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/black"
+            android:text="Entrar em contato"
+            app:layout_constraintBottom_toTopOf="@+id/CircleImageViewFeed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPostagemFeedDisciplina" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

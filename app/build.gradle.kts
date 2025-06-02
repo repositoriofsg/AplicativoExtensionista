@@ -55,6 +55,10 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.firebase.database)
     implementation(libs.firebase.auth)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.circleimageview)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -62,4 +66,6 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }
+
