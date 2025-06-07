@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<!--    <item-->
+<!--        android:id="@+id/icone_toolbar_busca"-->
+<!--        android:icon="@drawable/icone_toolbar_pesquisar"-->
+<!--        android:tint="@color/white"-->
+<!--        android:title="Pesquisar"-->
+<!--        app:actionViewClass="androidx.appcompat.widget.SearchView"-->
+<!--        app:showAsAction="ifRoom|collapseActionView" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/icone_toolbar_editar"-->
+<!--        android:title="Editar perfil"-->
+<!--        android:icon="@drawable/icone_toolbar_editar"-->
+<!--        android:tint="@android:color/white"-->
+<!--        app:showAsAction="ifRoom" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/icone_toolbar_sair"-->
+<!--        android:title="Sair"-->
+<!--        android:icon="@drawable/icone_toolbar_sair"-->
+<!--        android:tint="@android:color/white"-->
+<!--        app:showAsAction="ifRoom" />-->
+
+
+</menu>

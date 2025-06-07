@@ -8,11 +8,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.aulaquinta.aplicativoextensionista.R;
 import com.aulaquinta.aplicativoextensionista.config.ConfiguracaoFirebase;
 import com.aulaquinta.aplicativoextensionista.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +30,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.LinearLayout), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         auth = ConfiguracaoFirebase.getFirebaseAuth();
 
@@ -83,6 +92,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if(currentUser != null){
+            openHomeScreen();
+        }
+    }
     public void openSignupScreen(View view){
         Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
         startActivity(intent);
@@ -90,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void openHomeScreen(){ // Removido o View view porque não está sendo chamado a partir da interface
         //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class); // Temporario
+        Intent intent = new Intent(LoginActivity.this, HomeDoisActivity.class); // Temporario
         startActivity(intent);
     }
 }
