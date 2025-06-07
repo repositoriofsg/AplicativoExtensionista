@@ -11,16 +11,20 @@ public class PostagemFeed {
     private String nome;
     private String titulo, descricao;
     private Long data;
+    private String email;
+    private String telefone;
 
     public PostagemFeed() {
     }
 
-    public PostagemFeed(String caminhoFoto, String nome, String titulo, String descricao, Long data) {
+    public PostagemFeed(String caminhoFoto, String nome, String titulo, String descricao, Long data, String email, String telefone) {
         this.caminhoFoto = caminhoFoto;
         this.nome = nome;
         this.titulo = titulo;
         this.descricao = descricao;
         this.data = data;
+        this.email = email;
+        this.telefone = telefone;
     }
 
     public String getIdUsuario() {
@@ -48,6 +52,12 @@ public class PostagemFeed {
             return "data";
         }
     }
+    public String getEmail() {
+        return email;
+    }
+    public String getTelefone() {
+        return telefone;
+    }
 
     public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
@@ -66,5 +76,11 @@ public class PostagemFeed {
     }
     public void setData(Long data) {
         this.data = data;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

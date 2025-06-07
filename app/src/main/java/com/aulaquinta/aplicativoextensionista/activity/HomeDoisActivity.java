@@ -29,12 +29,13 @@ import com.aulaquinta.aplicativoextensionista.databinding.ActivityHomeDoisBindin
 import com.aulaquinta.aplicativoextensionista.fragment.FeedFragment;
 import com.aulaquinta.aplicativoextensionista.fragment.NewPostFragment;
 import com.aulaquinta.aplicativoextensionista.fragment.PerfilFragment;
+import com.aulaquinta.aplicativoextensionista.helper.RecyclerViewInterface;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-public class HomeDoisActivity extends AppCompatActivity {
+public class HomeDoisActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     Toolbar toolbar;
     ActivityHomeDoisBinding binding;
@@ -112,5 +113,11 @@ public class HomeDoisActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText( HomeDoisActivity.this, "Position: " + position, Toast.LENGTH_SHORT).show();
+
     }
 }

@@ -103,6 +103,7 @@
             android:background="@drawable/rounded_input"
             android:baselineAligned="false"
             android:hint="@string/projeto_telefone"
+            android:inputType="phone"
             app:layout_constraintBottom_toTopOf="@+id/textView_Disciplina_Interesses"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

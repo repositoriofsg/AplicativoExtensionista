@@ -37,6 +37,9 @@
         <activity
             android:name=".activity.EditarPerfilActivity"
             android:parentActivityName=".activity.HomeDoisActivity" />
+        <activity
+            android:name=".activity.ConteudoPostagemActivity"
+            android:parentActivityName=".activity.HomeDoisActivity" />
         <activity android:name=".activity.HomeDoisActivity" />
     </application>
 

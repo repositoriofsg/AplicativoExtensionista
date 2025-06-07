@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.aulaquinta.aplicativoextensionista.activity.HomeDoisActivity;
 import com.aulaquinta.aplicativoextensionista.config.ConfiguracaoFirebase;
 import com.aulaquinta.aplicativoextensionista.config.UsuarioFirebase;
 import com.aulaquinta.aplicativoextensionista.fragment.FeedFragment;
+import com.aulaquinta.aplicativoextensionista.helper.RecyclerViewInterface;
 import com.aulaquinta.aplicativoextensionista.model.PostagemFeed;
 import com.aulaquinta.aplicativoextensionista.model.Usuario;
 import com.bumptech.glide.Glide;
@@ -32,20 +34,21 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PostagemFeedAdapter extends RecyclerView.Adapter<PostagemFeedAdapter.ViewHolder> {
 
-    //private static Context context;
+    private final RecyclerViewInterface recyclerViewInterface;
     private ArrayList<PostagemFeed> listaPostagemFeed;
     //private String idUsuario;
     private StorageReference storageReference;
 
-    public PostagemFeedAdapter(ArrayList<PostagemFeed> listaPostagemFeed) {
+    public PostagemFeedAdapter(ArrayList<PostagemFeed> listaPostagemFeed, RecyclerViewInterface recyclerViewInterface) {
         this.listaPostagemFeed = listaPostagemFeed;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
     public PostagemFeedAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.auxiliar_postagem_feed, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, recyclerViewInterface);
     }
 
     @Override
@@ -86,17 +89,28 @@ public class PostagemFeedAdapter extends RecyclerView.Adapter<PostagemFeedAdapte
         TextView textViewPostagemFeedDescricao;
         TextView textViewPostagemFeedData;
 
+        //RecyclerView recyclerViewFeed;
+
         //String idUsuario;
         //StorageReference storageReference;
 
-
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             CircleImageViewFeed = itemView.findViewById(R.id.CircleImageViewFeed);
             textViewPostagemFeedNomeUsuario = itemView.findViewById(R.id.textViewPostagemFeedNomeUsuario);
             textViewPostagemFeedTitulo = itemView.findViewById(R.id.textViewPostagemFeedTitulo);
             textViewPostagemFeedDescricao = itemView.findViewById(R.id.textViewPostagemFeedDescricao);
             textViewPostagemFeedData = itemView.findViewById(R.id.textViewPostagemFeedData);
+            //recyclerViewFeed = itemView.findViewById(R.id.recyclerViewFeed);
+
+            itemView.setOnClickListener(v -> {
+                if(recyclerViewInterface != null){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        recyclerViewInterface.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 }

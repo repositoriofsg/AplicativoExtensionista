@@ -36,6 +36,7 @@ public class NewPostFragment extends Fragment {
 
     // - - - - - - - - - - - - - - - - - - - -  [ Variaveis ]
     private String idUsuarioLogado;
+    private String phoneUsuarioLogado;
     private FirebaseUser firebaseUser;
 
 
@@ -56,8 +57,8 @@ public class NewPostFragment extends Fragment {
         initSpinnerNovaPostagem();
         //idUsuarioLogado = UsuarioFirebase.getIdentificadorUsuario();
         firebaseUser = UsuarioFirebase.getUsuarioAtual();
+        phoneUsuarioLogado = firebaseUser.getPhoneNumber();
         idUsuarioLogado = firebaseUser.getUid();
-
 
         buttonPublicar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +76,11 @@ public class NewPostFragment extends Fragment {
         postagem.setTitulo(Objects.requireNonNull(textInputTitulo.getText()).toString());
         postagem.setDescricao(Objects.requireNonNull(textInputDescricao.getText()).toString());
         postagem.setNome(firebaseUser.getDisplayName());
-        postagem.setCaminhoFoto(firebaseUser.getPhotoUrl().toString());
+        if(firebaseUser.getPhotoUrl() != null){
+            postagem.setCaminhoFoto(firebaseUser.getPhotoUrl().toString());
+        }
+        postagem.setEmail(firebaseUser.getEmail());
+        postagem.setTelefone(firebaseUser.getPhoneNumber());
 
         if(postagem.salvar()){
             Toast.makeText( requireActivity(), "Postagem salva com sucesso!", Toast.LENGTH_SHORT).show();

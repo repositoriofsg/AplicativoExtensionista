@@ -2,6 +2,7 @@ package com.aulaquinta.aplicativoextensionista.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.aulaquinta.aplicativoextensionista.R;
 import com.aulaquinta.aplicativoextensionista.activity.EditarPerfilActivity;
@@ -31,9 +33,13 @@ import com.aulaquinta.aplicativoextensionista.activity.SettingsActivity;
 import com.aulaquinta.aplicativoextensionista.adapter.PostagemPerfilAdapter;
 import com.aulaquinta.aplicativoextensionista.config.ConfiguracaoFirebase;
 import com.aulaquinta.aplicativoextensionista.config.UsuarioFirebase;
+import com.aulaquinta.aplicativoextensionista.model.PostagemFeed;
 import com.aulaquinta.aplicativoextensionista.model.PostagemPerfil;
+import com.aulaquinta.aplicativoextensionista.model.Usuario;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,19 +48,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PerfilFragment extends Fragment implements MenuProvider {
 
-    //Toolbar toolbarPerfil;
-    private TextInputEditText textInputTitulo, textInputDescricao;
+    private CircleImageView circleImageViewPerfil;
+    //private TextInputEditText textInputTitulo, textInputDescricao;
+    private TextView textViewPerfilNome;
+    private TextView textViewPerfilEmail;
+    private TextView textViewPerfilProfissaoValor;
+    private TextView textViewPerfilDisponibilidadeValor;
     private String idUsuarioLogado;
 
     RecyclerView recyclerView;
     ArrayList<PostagemPerfil> listaPostagemPerfil;
     DatabaseReference databasePostagemPerfil;
+    DatabaseReference databaseUsuarioReference;
     PostagemPerfilAdapter adapterPostagemPerfil;
-
     FirebaseAuth auth;
-
 
     public PerfilFragment() {
     }
@@ -69,9 +80,64 @@ public class PerfilFragment extends Fragment implements MenuProvider {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_perfil, container, false);
+        inicializarComponentesPerfil(rootView);
 
-        recyclerView = rootView.findViewById(R.id.recyclerViewPerfil);
         idUsuarioLogado = UsuarioFirebase.getIdentificadorUsuario();
+        //databaseUsuarioReference = ConfiguracaoFirebase.getFirebaseDatabase();
+
+        // Consultar  dados do usuário (Authentication)
+        FirebaseUser usuarioPerfil = UsuarioFirebase.getUsuarioAtual();
+        textViewPerfilNome.setText(usuarioPerfil.getDisplayName());
+        textViewPerfilEmail.setText(usuarioPerfil.getEmail());
+
+        // Consulta dados do usuário
+        databaseUsuarioReference = ConfiguracaoFirebase.getFirebaseDatabase().child("usuarios").child(idUsuarioLogado);
+        databaseUsuarioReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                Usuario usuario = snapshot.getValue(Usuario.class);
+
+                if(usuario != null){
+                    if(usuario.getProfissao() != null){
+                        textViewPerfilProfissaoValor.setText(usuario.getProfissao());
+                    }
+                    if(usuario.getDisponibilidade() != null){
+                        textViewPerfilDisponibilidadeValor.setText(usuario.getDisponibilidade());
+                    }
+                }
+
+//                for (DataSnapshot ds : snapshot.getChildren()) {
+//                    Usuario usuario = ds.getValue(Usuario.class);
+//
+//                    if(usuario != null){
+//                        if(usuario.getProfissao() != null){
+//                            textViewPerfilProfissaoValor.setText(usuario.getProfissao());
+//                        }
+//                        if(usuario.getDisponibilidade() != null){
+//                            textViewPerfilDisponibilidadeValor.setText(usuario.getDisponibilidade());
+//                        }
+//                    }
+//                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Uri url = usuarioPerfil.getPhotoUrl();
+        if(url != null){
+            Glide.with(requireContext())
+                    .load(url)
+                    .into(circleImageViewPerfil);
+        }else{
+            circleImageViewPerfil.setImageResource(R.drawable.avatar);
+        }
+
+        // Consulta postagens
+        recyclerView = rootView.findViewById(R.id.recyclerViewPerfil);
         databasePostagemPerfil = ConfiguracaoFirebase.getFirebaseDatabase().child("postagem").child(idUsuarioLogado);
         listaPostagemPerfil = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -118,5 +184,13 @@ public class PerfilFragment extends Fragment implements MenuProvider {
             return true;
         }
         return false;
+    }
+
+    public void inicializarComponentesPerfil(View view){
+        circleImageViewPerfil = view.findViewById(R.id.circleImageViewPerfil);
+        textViewPerfilNome = view.findViewById(R.id.textViewPerfilNome);
+        textViewPerfilEmail = view.findViewById(R.id.textViewPerfilEmail);
+        textViewPerfilProfissaoValor = view.findViewById(R.id.textViewPerfilProfissaoValor);
+        textViewPerfilDisponibilidadeValor = view.findViewById(R.id.textViewPerfilDisponibilidadeValor);
     }
 }

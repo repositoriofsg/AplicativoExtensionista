@@ -1,6 +1,7 @@
 package com.aulaquinta.aplicativoextensionista.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -22,12 +23,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aulaquinta.aplicativoextensionista.R;
+import com.aulaquinta.aplicativoextensionista.activity.ConteudoPostagemActivity;
 import com.aulaquinta.aplicativoextensionista.adapter.PostagemFeedAdapter;
 import com.aulaquinta.aplicativoextensionista.config.ConfiguracaoFirebase;
 import com.aulaquinta.aplicativoextensionista.config.UsuarioFirebase;
+import com.aulaquinta.aplicativoextensionista.helper.RecyclerViewInterface;
 import com.aulaquinta.aplicativoextensionista.model.Postagem;
 import com.aulaquinta.aplicativoextensionista.model.PostagemFeed;
 import com.aulaquinta.aplicativoextensionista.model.Usuario;
@@ -47,7 +52,7 @@ import java.util.Objects;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class FeedFragment extends Fragment implements MenuProvider {
+public class FeedFragment extends Fragment implements MenuProvider{
 
     private CircleImageView CircleImageViewFeed;
     private TextView textViewPostagemFeedNomeUsuario;
@@ -55,10 +60,12 @@ public class FeedFragment extends Fragment implements MenuProvider {
     private TextView textViewPostagemFeedTitulo;
     private TextView textViewPostagemFeedDescricao;
     private TextView textViewPostagemFeedDisciplina;
-    private Button buttonPostagemFeed;
+    //private Button buttonPostagemFeed;
+    private ProgressBar progressBarFeed;
     private String idUsuarioLogado;
 
     RecyclerView recyclerView;
+    //RecyclerViewInterface recyclerViewInterface;
     ArrayList<PostagemFeed> listaPostagemFeed;
     DatabaseReference databasePostagemFeed;
     //DatabaseReference databaseUsuarioFeed;
@@ -81,18 +88,47 @@ public class FeedFragment extends Fragment implements MenuProvider {
 
         View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
 
+        recyclerView = rootView.findViewById(R.id.recyclerViewFeed);
+        progressBarFeed = rootView.findViewById(R.id.progressBarFeed);
+
+        showProgressBar();
+
         listaPostagemFeed = new ArrayList<>();
 
-        recyclerView = rootView.findViewById(R.id.recyclerViewFeed);
+//        if(!listaPostagemFeed.isEmpty()){
+//            hideProgressBar();
+//        }
+//        listaPostagemFeed.clear();
 
-        // aqui começa
         idUsuarioLogado = UsuarioFirebase.getIdentificadorUsuario();
         databasePostagemFeed = ConfiguracaoFirebase.getFirebaseDatabase().child("postagem");
-        //databaseUsuarioFeed = ConfiguracaoFirebase.getFirebaseDatabase().child("usuarios");
 
-        //databasePostagemFeed.orderByChild("data");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapterPostagemFeed = new PostagemFeedAdapter(listaPostagemFeed);
+
+        //adapterPostagemFeed = new PostagemFeedAdapter(listaPostagemFeed);
+        //Toast.makeText(getContext(), "Clicou: " + position, Toast.LENGTH_SHORT).show();
+        adapterPostagemFeed = new PostagemFeedAdapter(listaPostagemFeed, position -> {
+            PostagemFeed postagemFeed = listaPostagemFeed.get(position);
+            //String data = postagemFeed.getData();
+
+            Intent intent = new Intent(requireActivity(), ConteudoPostagemActivity.class);
+
+            intent.putExtra("FOTO", postagemFeed.getCaminhoFoto());
+            intent.putExtra("NOME", postagemFeed.getNome());
+            intent.putExtra("DATA", postagemFeed.getData());
+            intent.putExtra("TITULO", postagemFeed.getTitulo());
+            intent.putExtra("DESCRICAO", postagemFeed.getDescricao());
+            intent.putExtra("EMAIL", postagemFeed.getEmail());
+            if(postagemFeed.getTelefone() != null){
+                intent.putExtra("TELEFONE", postagemFeed.getTelefone());
+            }else{
+                intent.putExtra("TELEFONE", "Telefone não informado");
+            }
+            startActivity(intent);
+
+            //Toast.makeText(getContext(), "Data: " + data, Toast.LENGTH_SHORT).show();
+        });
+
         recyclerView.setAdapter(adapterPostagemFeed);
 
         databasePostagemFeed.addValueEventListener(new ValueEventListener() {
@@ -107,7 +143,11 @@ public class FeedFragment extends Fragment implements MenuProvider {
                     }
                 }
                 listaPostagemFeed.sort(Comparator.comparingLong(PostagemFeed::getDataOrdenarTimeStamp).reversed());
+                if(!listaPostagemFeed.isEmpty()){
+                    hideProgressBar();
+                }
                 adapterPostagemFeed.notifyDataSetChanged();
+                //adapterPostagemFeed.notifyItemInserted(listaPostagemFeed.size() - 1);
             }
 
             @Override
@@ -115,6 +155,9 @@ public class FeedFragment extends Fragment implements MenuProvider {
 
             }
         });
+
+
+        return rootView;
 
         //backup - consultando com id do usuario
 //        idUsuarioLogado = UsuarioFirebase.getIdentificadorUsuario();
@@ -156,8 +199,13 @@ public class FeedFragment extends Fragment implements MenuProvider {
 //
 //            }
 //        });
+    }
+    private void showProgressBar() {
+        progressBarFeed.setVisibility(View.VISIBLE);
+    }
 
-        return rootView;
+    private void hideProgressBar() {
+        progressBarFeed.setVisibility(View.GONE);
     }
 
     @Override

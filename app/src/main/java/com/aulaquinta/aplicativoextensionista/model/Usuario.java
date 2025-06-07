@@ -14,6 +14,8 @@ public class Usuario {
     private String email;
     private String senha;
     private String telefone;
+    private String profissao;
+    private String disponibilidade;
     private String caminhoFoto;
 
     public Usuario() {
@@ -38,9 +40,11 @@ public class Usuario {
 
     public Map<String, Object> converterParaMap(){
         HashMap<String, Object> usuarioMap = new HashMap<>();
-        usuarioMap.put("email", getEmail());
-        usuarioMap.put("nome", getNome());
         usuarioMap.put("id", getId());
+        usuarioMap.put("nome", getNome());
+        usuarioMap.put("email", getEmail());
+        usuarioMap.put("profissao", getProfissao());
+        usuarioMap.put("disponibilidade", getDisponibilidade());
         usuarioMap.put("caminhoFoto", getCaminhoFoto());
         return usuarioMap;
     }
@@ -63,6 +67,12 @@ public class Usuario {
     public String getTelefone() {
         return telefone;
     }
+    public String getProfissao() {
+        return profissao;
+    }
+    public String getDisponibilidade() {
+        return disponibilidade;
+    }
     public String getCaminhoFoto() {
         return caminhoFoto;
     }
@@ -83,6 +93,12 @@ public class Usuario {
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
+    }
+    public void setDisponibilidade(String disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
     public void setCaminhoFoto(String caminhoFoto) {
         this.caminhoFoto = caminhoFoto;

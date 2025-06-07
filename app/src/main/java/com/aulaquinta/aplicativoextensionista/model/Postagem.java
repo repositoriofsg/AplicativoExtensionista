@@ -16,6 +16,8 @@ public class Postagem {
     private String data;
     private String nome;
     private String caminhoFoto;
+    private String email;
+    private String telefone;
 
 
     public Postagem() {
@@ -60,6 +62,12 @@ public class Postagem {
     public Map<String, String> getData() {
         return ServerValue.TIMESTAMP;
     }
+    public String getEmail() {
+        return email;
+    }
+    public String getTelefone() {
+        return telefone;
+    }
 
     // [] - - - - - - - - - - - - - - - - - - - -  [ SET ]
 
@@ -85,5 +93,11 @@ public class Postagem {
 
     public void setCaminhoFoto(String caminhoFoto) {
         this.caminhoFoto = caminhoFoto;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

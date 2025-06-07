@@ -93,6 +93,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/rounded_input"
+            android:gravity="start"
             android:lines="5"
             app:layout_constraintBottom_toTopOf="@+id/textViewDisciplinas"
             app:layout_constraintEnd_toEndOf="parent"

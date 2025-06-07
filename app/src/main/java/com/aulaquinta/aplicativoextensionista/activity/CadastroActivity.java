@@ -2,6 +2,8 @@ package com.aulaquinta.aplicativoextensionista.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,6 +53,7 @@ public class CadastroActivity extends AppCompatActivity {
         textInput_email = findViewById(R.id.textInput_email);
         textInput_senha = findViewById(R.id.textInput_senha);
         textInput_telefone = findViewById(R.id.textInput_telefone);
+        //aplicarMascaraTelefone(textInput_telefone);
 
         dropdownCadastro = this.findViewById(R.id.spinner_disciplinas_interesse);
         initSpinnerCadastro();
@@ -149,4 +152,45 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private void aplicarMascaraTelefone(EditText editText) {
+//        textInput_telefone.addTextChangedListener(new TextWatcher() {
+//            boolean isUpdating;
+//            String old = "";
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                String str = s.toString().replaceAll("[^\\d]", "");
+//
+//                String mascara = "";
+//                if (isUpdating) {
+//                    old = str;
+//                    isUpdating = false;
+//                    return;
+//                }
+//
+//                int length = str.length();
+//                int i = 0;
+//
+//                if (length > 0) mascara += "(";
+//                for (; i < length && i < 2; i++) mascara += str.charAt(i);
+//                if (length > 2) mascara += ") ";
+//                for (; i < length && i < 7; i++) mascara += str.charAt(i);
+//                if (length > 7) mascara += "-";
+//                for (; i < length && i < 11; i++) mascara += str.charAt(i);
+//
+//                isUpdating = true;
+//                textInput_telefone.setText(mascara);
+//                textInput_telefone.setSelection(mascara.length());
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//    }
 }

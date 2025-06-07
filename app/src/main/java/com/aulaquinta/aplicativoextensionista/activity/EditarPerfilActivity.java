@@ -1,5 +1,7 @@
 package com.aulaquinta.aplicativoextensionista.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +28,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.aulaquinta.aplicativoextensionista.R;
 import com.aulaquinta.aplicativoextensionista.config.ConfiguracaoFirebase;
 import com.aulaquinta.aplicativoextensionista.config.UsuarioFirebase;
+import com.aulaquinta.aplicativoextensionista.model.PostagemPerfil;
 import com.aulaquinta.aplicativoextensionista.model.Usuario;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +37,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -46,13 +54,19 @@ public class EditarPerfilActivity extends AppCompatActivity {
     private CircleImageView circleImageViewEditarPerfil;
     private TextView textViewAlterarFoto;
     private TextInputEditText textInputEditarPerfilNome, textInputEditarPerfilEmail;
+    private TextInputEditText textInputEditarPerfilProfissao, textInputEditarPerfilDisponibilidade;
     private Button buttonEditarPerfilSalvar;
     private Usuario usuarioLogado;
     private String idUsuario;
-    private static final int SELECAO_GALERIA = 200;
+    //private static final int SELECAO_GALERIA = 200;
+
+    private Button buttonTESTE;
+
+    private String idUsuarioLogado;
 
     private ActivityResultLauncher<String> pickImageLauncher;
     private StorageReference storageReference;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -69,7 +83,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         // Configuções iniciais
         usuarioLogado = UsuarioFirebase.getDadosUsuarioLogado();
         storageReference = ConfiguracaoFirebase.getFirebaseStorageReference();
-        idUsuario = UsuarioFirebase.getIdentificadorUsuario();
+        idUsuarioLogado = UsuarioFirebase.getIdentificadorUsuario();
 
         // Configura toobar
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
@@ -77,13 +91,31 @@ public class EditarPerfilActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icone_toolbar_fechar);
 
         inicializarComponentesEditarPerfil();
 
-        // Recuperar dados do usuário
+        // Recuperar dados do usuário (Authentication)
         FirebaseUser usuarioPerfil = UsuarioFirebase.getUsuarioAtual();
         textInputEditarPerfilNome.setText(usuarioPerfil.getDisplayName());
         textInputEditarPerfilEmail.setText(usuarioPerfil.getEmail());
+
+        // Recuperar dados do usuário (Realtime Database)
+        databaseReference = ConfiguracaoFirebase.getFirebaseDatabase().child("usuarios").child(idUsuarioLogado);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Usuario usuario = snapshot.getValue(Usuario.class);
+                textInputEditarPerfilProfissao.setText(usuario.getProfissao());
+                textInputEditarPerfilDisponibilidade.setText(usuario.getDisponibilidade());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         Uri url = usuarioPerfil.getPhotoUrl();
         if(url != null){
             Glide.with(EditarPerfilActivity.this)
@@ -97,13 +129,17 @@ public class EditarPerfilActivity extends AppCompatActivity {
         buttonEditarPerfilSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nomeAtualizado = Objects.requireNonNull(textInputEditarPerfilNome.getText()).toString();
+                String atualizadoNome = Objects.requireNonNull(textInputEditarPerfilNome.getText()).toString();
+                String atualizadoProfissao = Objects.requireNonNull(textInputEditarPerfilProfissao.getText()).toString();
+                String atualizadoDisponibilidade = Objects.requireNonNull(textInputEditarPerfilDisponibilidade.getText()).toString();
 
                 // Atualizar nome no perfil (Firebase)
-                UsuarioFirebase.atualizarNomeUsuario(nomeAtualizado);
+                UsuarioFirebase.atualizarNomeUsuario(atualizadoNome);
 
                 // Atualizar nome no RealTime Database (Firebase)
-                usuarioLogado.setNome(nomeAtualizado);
+                usuarioLogado.setNome(atualizadoNome);
+                usuarioLogado.setProfissao(atualizadoProfissao);
+                usuarioLogado.setDisponibilidade(atualizadoDisponibilidade);
                 usuarioLogado.atualizar();
                 Toast.makeText( EditarPerfilActivity.this, "Dados alterados com sucess!.", Toast.LENGTH_SHORT).show();
             }
@@ -132,6 +168,14 @@ public class EditarPerfilActivity extends AppCompatActivity {
 //                }
             }
         });
+
+//        buttonTESTE.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                hideKeyboard(this);
+//
+//            }
+//        });
     }
 
     @Override
@@ -165,7 +209,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     StorageReference imagemRef = storageReference
                             .child("imagens")
                             .child("perfil")
-                            .child(idUsuario + ".jpeg");
+                            .child(idUsuarioLogado + ".jpeg");
 
                     UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
                     uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -193,6 +237,14 @@ public class EditarPerfilActivity extends AppCompatActivity {
         }
     }
 
+//    public void hideKeyboard(Context context) {
+//        View view = context.getCurrentFocus();
+//        if (view != null) {
+//            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//        }
+//    }
+
     private void atualizarFotoUsuario(Uri url){
         UsuarioFirebase.atualizarFotoUsuario(url);
         usuarioLogado.setCaminhoFoto(url.toString());
@@ -205,6 +257,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
         textViewAlterarFoto = findViewById(R.id.textViewAlterarFoto);
         textInputEditarPerfilNome = findViewById(R.id.textInputEditarPerfilNome);
         textInputEditarPerfilEmail = findViewById(R.id.textInputEditarPerfilEmail);
+        textInputEditarPerfilProfissao = findViewById(R.id.textInputEditarPerfilProfissao);
+        textInputEditarPerfilDisponibilidade = findViewById(R.id.textInputEditarPerfilDisponibilidade);
         buttonEditarPerfilSalvar = findViewById(R.id.buttonEditarPerfilSalvar);
         textInputEditarPerfilEmail.setFocusable(false);
     }

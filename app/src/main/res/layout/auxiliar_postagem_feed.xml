@@ -75,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:maxLines="3"
             android:text="Descricao"
             app:layout_constraintBottom_toTopOf="@+id/textViewPostagemFeedDisciplina"
             app:layout_constraintTop_toBottomOf="@+id/textViewPostagemFeedTitulo"
@@ -87,21 +88,9 @@
             android:layout_marginTop="16dp"
             android:background="?attr/colorErrorContainer"
             android:text="Prog. Orientada a Objetos"
-            app:layout_constraintBottom_toTopOf="@+id/buttonPostagemFeed"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@+id/textViewPostagemFeedDescricao"
-            tools:layout_editor_absoluteX="25dp" />
-
-        <Button
-            android:id="@+id/buttonPostagemFeed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/black"
-            android:text="Entrar em contato"
-            app:layout_constraintBottom_toTopOf="@+id/CircleImageViewFeed"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPostagemFeedDisciplina" />
+            tools:layout_editor_absoluteX="50dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
